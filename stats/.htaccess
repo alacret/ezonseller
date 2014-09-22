@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName " Statistics"
+/web/httpd2/conf/1472/virtualhosts.conf- AuthName "ezonseller.com Statistics"
+AuthUserFile /var/chroot/home/content/29/10454529/html/stats/.statspwd
+Require valid-user
+DirectoryIndex index.html

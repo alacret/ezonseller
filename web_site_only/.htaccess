@@ -1,0 +1,6 @@
+AuthUserFile /home/content/29/10454529/html/.htpasswd
+AuthGroupFile /dev/null
+AuthName "EnterPassword"
+AuthType Basic
+
+require valid-user
