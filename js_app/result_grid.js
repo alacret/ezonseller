@@ -4,10 +4,19 @@ Ext.define('Result', {
 		name : 'product_name',
 		type : 'string'
 	}, {
+		name : '_category',
+		type : 'string'
+	}, {
 		name : 'category',
 		type : 'string'
 	}, {
+		name : 'country',
+		type : 'string'
+	}, {
 		name : 'ASIN',
+		type : 'string'
+	}, {
+		name : 'keywords',
 		type : 'string'
 	}, {
 		name : 'rank',
@@ -94,6 +103,15 @@ function renderGrid(form){
 			dataIndex : 'ebay_link',
 			hidden:true
 		},{
+			dataIndex : 'country',
+			hidden:true
+		},{
+			dataIndex : '_category',
+			hidden:true
+		},{
+			dataIndex : 'keywords',
+			hidden:true
+		},{
 			header : 'Product name',
 			dataIndex : 'product_name',
 			width:350,
@@ -133,16 +151,17 @@ function renderGrid(form){
         '<img src="{image_url}" width="{image_width}" height="{image_height}" /> <br/>',
         '<a href="{amazon_link}" target="_blank">Amazon page</a><br/>',
         '<a href="{ccc_link}" target="_blank">Camel product page</a><br/>',
-        '<a href="{ebay_link}" target="_blank">Ebay search link</a><br/>',
-        '<a href="{amazon_search_link}" target="left_iframe">Boxed Amazon search link</a><br/>',
-        '<a href="{ebay_link}" target="right_iframe">Boxed ebay search link</a><br/>'
+        '<a href="{ebay_link}" target="_blank">Ebay search link</a><br/>'
+        ,'<a href="/frames/amazon.php?keywords={keywords}&country={country}&category={_category}" target="left_iframe">Boxed Amazon search link</a><br/>'
+        ,'<a href="/frames/ebay.php?keywords={keywords}&country={country}" target="right_iframe">Boxed ebay search link</a><br/>'
     ];
     var resultLinksTemplate = Ext.create('Ext.Template', resultLinksMarkup);	
 	
     grid.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
         if (selectedRecord.length) {
             var detailPanel = Ext.getCmp('detail-panel');
-            resultLinksTemplate.overwrite(detailPanel.body, selectedRecord[0].data);
+            var data = selectedRecord[0].data;
+            resultLinksTemplate.overwrite(detailPanel.body, data);
         }
     });
 	
