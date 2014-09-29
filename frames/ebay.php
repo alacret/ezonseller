@@ -38,6 +38,7 @@ $keywords = str_replace(" ", "%20", $_GET["keywords"]);
                     var title = item.title;
                     var pic = item.galleryURL;
                     var viewitem = item.viewItemURL;
+                    console.log(item);
                     var currentPriceObj = item.sellingStatus[0].currentPrice[0];
                     var priceitem = currentPriceObj["@currencyId"] + " " + currentPriceObj["__value__"];
 
