@@ -1,8 +1,20 @@
 <?php
+
+$global_id["com"] = "EBAY-US";
+$global_id["de"] = "EBAY-DE";
+$global_id["co.uk"] = "EBAY-GB";
+$global_id["ca"] = "EBAY-ENCA";
+$global_id["fr"] = "EBAY-FR";
+$global_id["it"] = "EBAY-IT";
+$global_id["cn"] = "EBAY-HK";
+$global_id["co.jp"] = "EBAY-US";
+            
 if (!isset($_GET["country"]))
     die("");
 
-$country = $_GET["country"];
+$entriesPerPage = 100;
+$country =  $_GET["country"];
+$GI= $global_id[trim($_GET["country"])];
 $keywords = str_replace(" ", "%20", $_GET["keywords"]);
 ?>
 <html>
@@ -57,7 +69,7 @@ $keywords = str_replace(" ", "%20", $_GET["keywords"]);
         <!--
         Use the value of your appid for the appid parameter below.
         -->
-        <script src=http://svcs.ebay.<?= $country ?>/services/search/FindingService/v1?SECURITY-APPNAME=crawlera-e2ee-446d-a500-8659146df91c&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&callback=_cb_findItemsByKeywords&REST-PAYLOAD&keywords=<?= $keywords ?>&paginationInput.entriesPerPage=10>
+        <script src=http://svcs.ebay.<?= $country ?>/services/search/FindingService/v1?SECURITY-APPNAME=crawlera-e2ee-446d-a500-8659146df91c&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&callback=_cb_findItemsByKeywords&REST-PAYLOAD&GLOBAL-ID=<?= $GI ?>&keywords=<?= $keywords ?>&paginationInput.entriesPerPage=<?= $entriesPerPage ?>>
         </script>
     </body>
 </html>
